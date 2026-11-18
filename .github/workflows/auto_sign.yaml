@@ -2,8 +2,11 @@
 name: Auto Sign
 on:
   schedule:
-    # 北京时间 00:01 = UTC 16:01（前一天）
-    - cron: '1 16 * * *'
+    # 北京时间 01:05 = UTC 17:05（前一天）
+    # 注意：GitHub 的 schedule 是尽力而为，实际可能被推迟数小时
+    - cron: '5 17 * * *'
+    # 可选：再加一条错开的备份定时，防止某天整个被丢弃（脚本重复签到是幂等的）
+    # - cron: '5 21 * * *'
   workflow_dispatch:
 jobs:
   build:
